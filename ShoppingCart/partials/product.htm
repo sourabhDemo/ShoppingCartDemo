@@ -1,0 +1,63 @@
+﻿<p class="text-info">
+    <img data-ng-src="img/products/{{product.sku}}.jpg" alt="{{product.name}}"/>
+    {{product.name}}: {{product.description}}<br />
+</p>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8">
+
+            <!-- product info -->
+            <table class="table table-bordered">
+
+                <tr class="well">
+                    <td class="tdRight" colspan="3" >
+                        <a href="default.htm#/cart" title="go to shopping cart" data-ng-disabled="cart.getTotalCount() < 1">
+                            <i class="icon-shoppi-ng-cart" />
+                            <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                            <span data-ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="tdLeft"><b>Feature</b></td>
+                    <td class="tdLeft"><b>Image</b></td>
+                    <td class="tdLeft"><b>Description</b></td>
+                </tr>
+                <tr data-ng-repeat="property in product.feature">
+                    <td class="tdLeft"><b>{{property.FeatureName}}</b></td>
+                    <td class="tdCenter"><img data-ng-src="img/{{property.ImageName}}.png" alt="{{property.ImageName}}" /></td>
+                    <td>
+                        {{property.Description}}
+                    </td>
+                </tr>
+
+                <tr class="well">
+                    <td class="tdRight" colspan="3" >
+                        <a href="default.htm#/cart" title="go to shopping cart" data-ng-disabled="cart.getTotalCount() < 1">
+                            <i class="icon-shoppi-ng-cart" />
+                            <b>{{cart.getTotalCount()}}</b> items, <b>{{cart.getTotalPrice() | currency}}</b>
+                            <span data-ng-show="cart.getTotalCount(product.sku) > 0"><br />this item is in the cart</span>
+                        </a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <!-- buttons -->
+        <div class="span4">
+            <button class="btn btn-block btn-success" data-ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
+                <i class="icon-shoppidata-ng-cart icon-white" /> add to cart
+            </button>
+            <button class="btn btn-block btn-danger" data-ng-click="cart.addItem(product.sku, product.name, product.price, -10000)" data-ng-disabled="cart.getTotalCount(product.sku) < 1">
+                <i class="icon-trash icon-white" /> remove from cart
+            </button>
+            <button class="btn btn-block" onclick="window.location.href=''">
+                <i class="icon-chevron-left" /> back to store
+            </button>
+        </div>
+    </div>
+</div>
+
